@@ -21,7 +21,12 @@
 // $headers .= "Reply-To: $email_address";	
 // mail($to,$email_subject,$email_body,$headers);
 // return true;
-require('phpmailer/class.phpmailer.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require './mailer/src/Exception.php';
+require './mailersrc/PHPMailer.php';
+require './mailersrc/SMTP.php';
 $mail = new PHPMailer();
 $subject = "Test Mail using PHP mailer";
 $content = "<b>This is a test mail using PHP mailer class.</b>";
@@ -36,14 +41,14 @@ $mail->Host     = "smtp.gmail.com";
 $mail->Mailer   = "smtp";
 $mail->SetFrom("koganrealty@yahoo.com", "PHPPot");
 $mail->AddReplyTo("koganrealty@yahoo.com", "PHPPot");
-$mail->AddAddress("recipient address");
+$mail->AddAddress("sobolmisha@gmail.com");
 $mail->Subject = $subject;
 $mail->WordWrap   = 80;
 $mail->MsgHTML($content);
 $mail->IsHTML(true);
 
 if(!$mail->Send()) 
-	echo "Problem on sending mail";
+	return false;
 else 
-echo "Mail sent";			
+return true;			
 ?>
