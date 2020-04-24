@@ -32,8 +32,8 @@ require './mailer/src/SMTP.php';
 $mail = new PHPMailer();
 $subject = "Test Mail using PHP mailer";
 $content = "<b>This is a test mail using PHP mailer class.</b>";
-$mail->IsSMTP();
-$mail->SMTPDebug = 0;
+//$mail->IsSMTP();
+$mail->SMTPDebug = 1;
 $mail->SMTPAuth = TRUE;
 $mail->SMTPSecure = "tls";
 $mail->Port     = 587;  
@@ -49,8 +49,12 @@ $mail->WordWrap   = 80;
 $mail->MsgHTML($content);
 $mail->IsHTML(true);
 
-if(!$mail->Send()) 
+if(!$mail->Send()){
+	echo "Mailer Error: " . $mail->ErrorInfo;
 	return false;
-else 
-return true;			
+} 
+else {
+	return true;
+}
+			
 ?>
