@@ -27,8 +27,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require './mailer/src/Exception.php';
-require './mailersrc/PHPMailer.php';
-require './mailersrc/SMTP.php';
+require './mailer/src/PHPMailer.php';
+require './mailer/src/SMTP.php';
 $mail = new PHPMailer();
 $subject = "Test Mail using PHP mailer";
 $content = "<b>This is a test mail using PHP mailer class.</b>";
